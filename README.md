@@ -5,7 +5,7 @@
 ## 1. (once) Clone github project to local <br>
 Please run the following command in the expected path
  
-`git clone https://github.com/TGevinT/T-Det-D.git`
+`git clone https://github.com/TGevinT/C241-IC02.git`
 
 Note: Already install Git in local computer
 
