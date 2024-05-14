@@ -39,7 +39,7 @@ If want to deactivate
 `deactivate`
 
 ## 5. Install requirements <br>
-`pip install -r requirements.txt`
+`p`
 
 # Guide for Daily Project
 
