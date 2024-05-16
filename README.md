@@ -5,7 +5,7 @@
 ## 1. (once) Clone github project to local <br>
 Please run the following command in the expected path
  
-`git clone https://github.com/TGevinT/T-Det-D.git`
+`git clone https://github.com/TGevinT/C241-IC02.git`
 
 Note: Already install Git in local computer
 
@@ -20,10 +20,10 @@ Note: Branch main for final result and staging for deployment (don't change the 
 
 ## 3. (once) Create virtual environment <br>
 For Windows:
-    python -m venv .venv
+`python -m venv .venv`
 
 For macOS/Linux
-    python3 -m venv .venv
+`python3 -m venv .venv`
 
 ## 4. Activate the virtual environment<br>
 For Windows
@@ -38,8 +38,8 @@ If want to deactivate
 
 `deactivate`
 
-## 5. Install requirements <br>
-`p`
+## 5. Install requirements <br>:
+    pip install -r requirements.txt
 
 # Guide for Daily Project
 
