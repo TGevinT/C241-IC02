@@ -1,3 +1,6 @@
 # virtual environment
 .venv
 .DS_Store
+machine_learning/data_set
+machine_learning/KOTOR
+src/model
