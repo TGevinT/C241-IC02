@@ -1,3 +1,7 @@
 # virtual environment
 .venv
 .DS_Store
+
+__pycache__/
+
+machine_learning/model
