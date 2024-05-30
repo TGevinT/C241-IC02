@@ -4,5 +4,6 @@
 
 __pycache__/
 
-machine_learning/model
-machine_learning/model_tampak_bawah
+machine_learning/data_set
+machine_learning/KOTOR
+

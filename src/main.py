@@ -1,22 +1,13 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+import logging
+from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from src.utils import preprocess_image
-import tensorflow as tf
+from src.gigi_tampak_depan import GigiTampakDepan
+from src.gigi_tampak_atas import GigiTampakAtas
+import uvicorn
 
-import numpy as np
-import os
-import sys
-from tensorflow.keras.models import load_model
-
-
-# # Add the parent directory of your project to the module search path
-# mypath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'machine_learning/models'))
-# model = tf.keras.models.load_model(os.path.join(mypath, 'model_tampak_depan.h5'))
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'machine_learning/models')))
-model_path = os.path.join(os.path.dirname(__file__), '..', 'machine_learning/models', 'model_tanpak_atas.h5')
-model = load_model(model_path)
-
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 __version__ = "1.0.0"
 
@@ -38,17 +29,33 @@ async def index():
     }
 
 @app.post("/predict")
-async def predict(file: UploadFile = File(...)):
-    class_labels = ['Perubahan Warna Gigi', 'Radang Gusi', 'Gigi Berlubang', 'Gigi Sehat', 'Bukan Gigi']
-    image_data = await file.read()
-    processed_image = preprocess_image(image_data)
-    prediction = model.predict(processed_image)
-    prediction_class_index = np.argmax(prediction)
+async def predict(
+    tampak_atas: UploadFile = File(...),
+    tampak_bawah: UploadFile = File(...),
+    tampak_depan: UploadFile = File(...),
+):
+    
+    try:
+        checker_tampak_atas = GigiTampakAtas(await tampak_atas.read())
+        checker_tampak_depan = GigiTampakDepan(await tampak_depan.read())
+    except FileNotFoundError as e:
+        logger.error(f"File not found: {e}", exc_info=True)
+        raise HTTPException(status_code=404, detail=f"File not found: {e}")
+    except Exception as e:
+        logger.error(f"Error loading models or images: {e}", exc_info=True)
+        raise HTTPException(status_code=400, detail=f"Error loading models or images: {e}")
+    
+    try:
+        result_atas = checker_tampak_atas.predict()
+        result_depan = checker_tampak_depan.predict()
+    except Exception as e:
+        logger.error(f"Error during prediction: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error during prediction: {e}")
 
-    if prediction_class_index < len(class_labels):
-        predicted_label = class_labels[prediction_class_index]
-        return {
-            "prediksi": predicted_label,
-        }
-    else:
-        raise HTTPException(status_code=500, detail="Predicted class index is out of range.")
+    return {
+        "result_atas": result_atas,
+        "result_depan": result_depan,
+    }
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
