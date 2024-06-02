@@ -13,7 +13,7 @@ class GigiTampakDepan(Gigi):
         img_convert = Image.open(io.BytesIO(image)).convert('RGB')
         processed_image = preprocess_image_depan(img_convert)
         super().__init__(img_convert, processed_image)
-        self._class_labels = ['Bukan Gigi', 'Gigi Berlubang', 'Gigi Sehat', 'Perubahan Warna Gigi', 'Radang Gusi']
+        self._class_labels = ['Bukan Gambar Gigi', 'Gigi Berlubang', 'Gigi Sehat', 'Perubahan Warna Gigi', 'Radang Gusi']
         self._model = ort.InferenceSession(model_path)
 
     

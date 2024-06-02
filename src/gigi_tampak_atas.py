@@ -8,6 +8,8 @@ import io
 current_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(current_dir, 'model', 'model_gigi_tampak_atas.onnx')
 
+
+
 class GigiTampakAtas(Gigi):
     def __init__(self, image):
         img_convert = Image.open(io.BytesIO(image)).convert('RGB')

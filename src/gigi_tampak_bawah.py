@@ -6,7 +6,7 @@ from src.gigi import Gigi
 import io
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-model_path = ""
+model_path = os.path.join(current_dir, 'model', 'model_gigi_tampak_bawah.onnx')
 
 class GigiTampakBawah(Gigi):
     def __init__(self, image):

@@ -13,7 +13,7 @@ def preprocess_image_atas(image):
     return img
 
 def preprocess_image_depan(image):
-    IMAGE_SIZE = 224
+    IMAGE_SIZE = 416
     img_resized = image.resize((IMAGE_SIZE, IMAGE_SIZE))
     img = np.array(img_resized)
     img = np.transpose(img, (2, 0, 1))  # Change dimensions from (224, 224, 3) to (3, 224, 224)
@@ -22,4 +22,10 @@ def preprocess_image_depan(image):
     return img
 
 def preprocess_image_bawah(image):
-    pass
+    input_size=(224, 224)
+    transform = transforms.Compose([
+        transforms.Resize(input_size),
+        transforms.ToTensor(),
+    ])
+    img = transform(image).unsqueeze(0).numpy()
+    return img
