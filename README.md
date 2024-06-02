@@ -67,5 +67,7 @@ best practice commit can see in [here](https://www.freecodecamp.org/news/writing
 
 now the project save in expected branch in github
 
+git rm —cached -r
+
 
 
