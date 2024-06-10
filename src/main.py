@@ -71,6 +71,3 @@ async def predict(
         "result_atas": result_atas,
         "result_bawah": result_bawah,
     }
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

@@ -3,20 +3,21 @@ import io
 from google.cloud import storage
 import os
 from src.utils import connect_to_database
+from dotenv import load_dotenv
 
-os.environ["GOOGLE_CLOUD_PROJECT"] = "c241-ic02"
+load_dotenv()
+
+os.environ["GOOGLE_CLOUD_PROJECT"] = os.getenv("PROJECT_ID")
 storage_client = storage.Client()
 
 class Gigi:
-    _class_labels = []  
-    _model = None
-    _bucket_name = None
-    _image_read = None
 
-
-    def __init__(self, image, processed_image):
+    def __init__(self, image, processed_image, class_labels, model, bucket_name):
         self._image = image
         self._processed_image = processed_image
+        self._class_labels = class_labels
+        self._model = model
+        self._bucket_name = bucket_name
 
     def predict(self):
         if self._model is None:
@@ -37,7 +38,7 @@ class Gigi:
         # Upload image to bucket
         bucket = storage_client.bucket(self._bucket_name)
         blob = bucket.blob(f"{predict}/{timestamp}_{file_name}")
-        blob.upload_from_string(self._image_read)
+        blob.upload_from_string(self._image)
 
         image_url = blob.public_url
 

@@ -7,3 +7,5 @@ __pycache__/
 machine_learning/data_set
 machine_learning/KOTOR
 
+.env
+
