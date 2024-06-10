@@ -1,5 +1,6 @@
 import numpy as np
 import torchvision.transforms as transforms
+import psycopg2
 
 
 def preprocess_image_atas(image):
@@ -29,3 +30,12 @@ def preprocess_image_bawah(image):
     ])
     img = transform(image).unsqueeze(0).numpy()
     return img
+
+def connect_to_database():
+    conn = psycopg2.connect(
+            host="34.34.221.251",  
+            database="prediction-teeth-diseases", 
+            user="postgres",  
+            password="godentist"  
+        )
+    return conn

@@ -69,5 +69,8 @@ now the project save in expected branch in github
 
 git rm —cached -r
 
+uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+
 
 

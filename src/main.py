@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.gigi_tampak_bawah import GigiTampakBawah
 from src.gigi_tampak_depan import GigiTampakDepan
 from src.gigi_tampak_atas import GigiTampakAtas
+from datetime import datetime
 
 import uvicorn
 
@@ -55,6 +56,15 @@ async def predict(
     except Exception as e:
         logger.error(f"Error during prediction: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error during prediction: {e}")
+    
+    try:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        checker_tampak_depan.save_image(result_depan, tampak_depan.filename, timestamp)
+        checker_tampak_atas.save_image(result_atas, tampak_atas.filename, timestamp)
+        checker_tampak_bawah.save_image(result_bawah, tampak_bawah.filename, timestamp)
+    except Exception as e:
+        logger.error(f"Error saving images: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error saving images: {e}")
 
     return {
         "result_depan": result_depan,
