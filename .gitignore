@@ -1,5 +1,12 @@
-# virtual environment
+# Environments
+.env
 .venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
 .DS_Store
 
 __pycache__/
