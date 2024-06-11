@@ -5,8 +5,12 @@ from src.gigi_tampak_bawah import GigiTampakBawah
 from src.gigi_tampak_depan import GigiTampakDepan
 from src.gigi_tampak_atas import GigiTampakAtas
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 
 import uvicorn
+
+load_dotenv()
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -71,3 +75,7 @@ async def predict(
         "result_atas": result_atas,
         "result_bawah": result_bawah,
     }
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT"))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
