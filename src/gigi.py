@@ -35,7 +35,7 @@ class Gigi:
         return self._class_labels[prediction_class_index] if prediction_class_index < len(self._class_labels) else "Unknown"
     
     def save_image(self, predict, file_name, timestamp):
-        # Upload image to bucket
+        # Upload image to bucket 
         bucket = storage_client.bucket(self._bucket_name)
         blob = bucket.blob(f"{predict}/{timestamp}_{file_name}")
         blob.upload_from_string(self._image)

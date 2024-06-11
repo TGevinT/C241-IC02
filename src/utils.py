@@ -1,6 +1,8 @@
+import io
 import numpy as np
 import torchvision.transforms as transforms
 import psycopg2
+from PIL import Image
 from dotenv import load_dotenv
 import os
 
@@ -32,6 +34,18 @@ def preprocess_image_bawah(image):
         transforms.ToTensor(),
     ])
     img = transform(image).unsqueeze(0).numpy()
+    return img
+
+def resize_image(image):
+    target_size=(416, 416)
+
+    # Resize the image
+    image = image.resize(target_size, Image.Resampling.LANCZOS)
+
+    # Convert the resized image to bytes
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format='JPEG')
+    img= img_byte_arr.getvalue()
     return img
 
 def connect_to_database():
