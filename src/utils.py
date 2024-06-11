@@ -1,7 +1,12 @@
+import io
 import numpy as np
 import torchvision.transforms as transforms
 import psycopg2
+from PIL import Image
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 def preprocess_image_atas(image):
     transform = transforms.Compose([
@@ -23,7 +28,7 @@ def preprocess_image_depan(image):
     return img
 
 def preprocess_image_bawah(image):
-    input_size=(224, 224)
+    input_size=(640, 640)
     transform = transforms.Compose([
         transforms.Resize(input_size),
         transforms.ToTensor(),
@@ -31,11 +36,23 @@ def preprocess_image_bawah(image):
     img = transform(image).unsqueeze(0).numpy()
     return img
 
+def resize_image(image):
+    target_size=(416, 416)
+
+    # Resize the image
+    image = image.resize(target_size, Image.Resampling.LANCZOS)
+
+    # Convert the resized image to bytes
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format='JPEG')
+    img= img_byte_arr.getvalue()
+    return img
+
 def connect_to_database():
     conn = psycopg2.connect(
-            host="34.34.221.251",  
-            database="prediction-teeth-diseases", 
-            user="postgres",  
-            password="godentist"  
-        )
+        host=os.getenv("DB_HOST"),
+        database=os.getenv("DB_DATABASE"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD")
+    )
     return conn
