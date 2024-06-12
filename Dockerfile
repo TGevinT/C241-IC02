@@ -4,10 +4,21 @@ FROM python:3.10-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    pkg-config \
+    libhdf5-dev \
+    libpq-dev \
+    && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install any needed packages specified in requirements.txt
+# Install Python dependencies
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Expose port 8000 to the outside world
