@@ -7,7 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-os.environ["GOOGLE_CLOUD_PROJECT"] = os.getenv("PROJECT_ID")
+project_id = os.getenv("PROJECT_ID")
+if not project_id:
+    raise EnvironmentError("The environment variable 'PROJECT_ID' is not set.")
+os.environ["GOOGLE_CLOUD_PROJECT"] = project_id
+
 storage_client = storage.Client()
 
 class Gigi:
