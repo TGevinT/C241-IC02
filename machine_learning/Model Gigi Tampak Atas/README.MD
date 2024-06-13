@@ -1,3 +1,5 @@
+# Table Machine Learning Gigi Tampak Atas
+
 | Model       | Version  | Augmentation                                       | Accuracy | Val Accuracy |
 |-------------|----------|----------------------------------------------------|----------|--------------|
 | CNN         | CNN      | rescale=1/255,<br>rotation_range=20,<br>fill_mode='nearest' | 0.99     | 0.80         |
