@@ -16,6 +16,10 @@ Image classifiers model for detecting teeth diseases is an image classification 
 [Model Gigi Tampak Atas Machine Learning](https://github.com/TGevinT/C241-IC02/tree/CN/machine_learning/Model%20Gigi%20Tampak%20Atas/Yolo%20V8n%20Acc%2098)<br>
 [Model Gigi Tampak Bawah Machine Learning](https://github.com/TGevinT/C241-IC02/tree/CN/machine_learning/Model%20Gigi%20Tampak%20Bawah/yolov8n640)
 
+## [API LINK](https://predict-5nzuk2qjaa-et.a.run.app)
+
+
+
 
 
 
