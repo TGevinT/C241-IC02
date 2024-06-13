@@ -9,5 +9,6 @@
 | EFFICIENTNETV2 B3| rescale=1/255,<br>validation_split=0.2,<br>fill_mode='nearest' | 0.9905   | 0.8624       |
 | YoloV8s          | imgsz=640                                                       | 1        | 0.986        |
 
-Untuk data h.5 terdapat [di drive](https://drive.google.com/drive/folders/1Y1RjevTpn7bTu_9GHUaRpYOHy2325x12?usp=sharing)
+
+### Untuk data h.5 terdapat [di drive](https://drive.google.com/drive/folders/1Y1RjevTpn7bTu_9GHUaRpYOHy2325x12?usp=sharing)
 
