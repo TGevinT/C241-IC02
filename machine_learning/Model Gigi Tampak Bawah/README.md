@@ -1,3 +1,5 @@
+# Table Machine Learning Gigi Tampak Bawah
+
 | Version       | Augmentation                                                   | Accuracy | Val Accuracy |
 |---------------|----------------------------------------------------------------|----------|--------------|
 | Xception      | rescale = 1/225                                                | 0.9993   | 0.9545       |
