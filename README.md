@@ -18,11 +18,11 @@ Image classifiers model for detecting teeth diseases is an image classification 
 [Dataset Link](https://drive.google.com/drive/folders/15KLob0oA4717AhQ22TKKs3TgZjWuZKL1)
 
 ## Collaborators
-Fakhrus Syakir - ML 
-Teuku Muhammad Faiz Nuzullah - ML 
-Muhammad Zia Ulhaq - ML 
-Novita Sari Saragih - ML 
-Teuku Gevin Taufan - CC 
+Fakhrus Syakir - ML <br>
+Teuku Muhammad Faiz Nuzullah - ML <br>
+Muhammad Zia Ulhaq - ML <br>
+Novita Sari Saragih - ML <br>
+Teuku Gevin Taufan - CC <br>
 Achmad Noval Fahrezi - CC 
 
 
