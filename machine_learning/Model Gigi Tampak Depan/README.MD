@@ -1,6 +1,4 @@
-Untuk data h.5 dari output yang tidak bisa di upload terdapat [di drive](https://drive.google.com/drive/folders/1Y1RjevTpn7bTu_9GHUaRpYOHy2325x12?usp=sharing)
-
-saya sudah mencoba deploy sendiri untuk mencari participant yang ingin menggunakannya sebagai bahan percobaan yang dapat diakses [di sini](https://gigide.streamlit.app/)
+# Table Machine Learning Gigi Tampak Depan
 
 
 | Version          | Augmentation                                                   | Accuracy | Val Accuracy |
@@ -10,4 +8,6 @@ saya sudah mencoba deploy sendiri untuk mencari participant yang ingin menggunak
 | CNN              | rescale=1/255                                                  | 0.9678   | 0.9302       |
 | EFFICIENTNETV2 B3| rescale=1/255,<br>validation_split=0.2,<br>fill_mode='nearest' | 0.9905   | 0.8624       |
 | YoloV8s          | imgsz=640                                                       | 1        | 0.986        |
+
+Untuk data h.5 terdapat [di drive](https://drive.google.com/drive/folders/1Y1RjevTpn7bTu_9GHUaRpYOHy2325x12?usp=sharing)
 
